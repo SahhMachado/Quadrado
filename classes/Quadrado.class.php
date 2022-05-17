@@ -12,14 +12,15 @@
             $this->setCor($cr);
         }
 
+        public function getId(){ return $this->id; }
+        public function setId($id){ $this->id = $id;}
+
         public function getLado(){ return $this->lado; }
         public function setLado($ld){ $this->lado = $ld;}
 
         public function getCor(){ return $this->cor; }
         public function setCor($cr){ $this->cor = $cr; }
         
-        public function getId(){ return $this->id; }
-        public function setId($id){ $this->id = $id;}
 
         public function area(){
             return $this->lado * $this->lado;
@@ -44,14 +45,14 @@
             return $stmt->execute(); 
         }
 
-        public function editar($id){
+        public function editar(){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('UPDATE quadrado SET lado = :lado, cor = :cor
             WHERE id = :id');
 
-            $stmt->bindValue(':id', $this->setId($this->id));
-            $stmt->bindValue(':lado', $this->setLado($this->lado));
-            $stmt->bindValue(':cor', $this->setCor($this->cor));
+            $stmt->bindValue(':id', $this->getId());
+            $stmt->bindValue(':lado', $this->getLado());
+            $stmt->bindValue(':cor', $this->getCor());
 
             return $stmt->execute();
         }

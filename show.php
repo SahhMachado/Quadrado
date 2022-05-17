@@ -83,6 +83,7 @@
 <table>
             <tr><td><b>Lado(cm)</b></td>
                 <td><b>Cor</b></td>
+                <td><b>Editar</b></td>
                 <td><b>Excluir</b></td>
     </tr> 
     <tr>
@@ -105,7 +106,7 @@
             <td><?php echo $linha['lado'];?></td>
             <td><?php echo $linha['cor'];?></td>   
             
-            <!--<td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>-->
+            <td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>
             <img src='img/excluir.svg'></a><br>"; ?></td>
         </tr>   

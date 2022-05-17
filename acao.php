@@ -21,9 +21,10 @@ $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
             $quad = new Quadrado("", $_POST['lado'], $_POST['cor']);      
             $resultado = $quad->insere();
             header("location:show.php");
-        }else     
-        $quad = new Quadrado($_POST['id'], $_POST['lado'], $_POST['cor']);
-        $resultado = $quad->editar($id);
+        }else {
+            $quad = new Quadrado($_POST['id'], $_POST['lado'], $_POST['cor']);
+            $resultado = $quad->editar();
+        }    
         header("location:show.php");    
     }catch(Exception $e){
         echo "<h1>Erro ao cadastrar o Quadrado.<h1>
