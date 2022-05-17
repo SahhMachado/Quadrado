@@ -1,6 +1,6 @@
 <table>
 <tr>
-    <td><a href="index.php" class="menu">Cadastrar</a></td>
+    <td><a href="cad.php" class="menu">Cadastrar</a></td>
     <td><a href="show.php" class="menu">Consultar</a></td>
 </tr>
 </table>
