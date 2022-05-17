@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
     $title = "Quadrado";
-    $lado = isset($_POST['lado']) ? $_POST['lado'] : 0;
-    $cor = isset($_POST['cor']) ? $_POST['cor'] : "";
+    $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
+    $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
 ?>
 
 <html lang="pt-br">
