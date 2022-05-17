@@ -72,6 +72,5 @@
             <div class = "square"></div>
     </fieldset>
     <br>
-        <button><a href="criarQ.php">Voltar</a></button>
 </body>
 </html>
