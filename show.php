@@ -110,7 +110,7 @@
             <td><?php echo $linha['cor'];?></td>   
             <td><a href='qrd.php?lado=<?php echo $linha['lado'];?>&cor=<?php echo $cor;?>'><img src='img/listar.svg'></a></td>
             
-            <td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>
+            <td><a href='cad.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>
             <img src='img/excluir.svg'></a><br>"; ?></td>
         </tr>   
