@@ -99,7 +99,7 @@
     else if($cnst == 2){
         $consulta = $pdo->query("SELECT * FROM quadrado
                                  WHERE cor LIKE '$procurar%' 
-                                 ORDER BY cor");}
+                                 ORDER BY id");}
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) { 
 
         $cor = str_replace("#","%23",$linha['cor']);
@@ -108,7 +108,7 @@
 
             <td><?php echo $linha['lado'];?></td>
             <td><?php echo $linha['cor'];?></td>   
-            <td><a href='qrd.php?lado=<?php echo $linha['lado'];?>&cor=<?php echo $cor;?>'><img src='img/listar.svg'></a></td>
+            <td><a href='listar.php?lado=<?php echo $linha['lado'];?>&cor=<?php echo $cor;?>'><img src='img/listar.svg'></a></td>
             
             <td><a href='cad.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>
             <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>
