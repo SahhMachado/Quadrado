@@ -7,7 +7,7 @@ $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     if ($acao == "excluir"){
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         
-        $quad = new Quadrado("", "", "");
+        $quad = new Quadrado("", "", "", "");
         $resultado = $quad->excluir($id);
         header("location:show.php");
     }
@@ -18,11 +18,11 @@ $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
 
         try{
         if ($id == 0){
-            $quad = new Quadrado("", $_POST['lado'], $_POST['cor']);      
+            $quad = new Quadrado("", $_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);      
             $resultado = $quad->insere();
             header("location:show.php");
         }else {
-            $quad = new Quadrado($_POST['id'], $_POST['lado'], $_POST['cor']);
+            $quad = new Quadrado($_POST['id'], $_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);
             $resultado = $quad->editar();
         }    
         header("location:show.php");    
@@ -40,6 +40,7 @@ function buscarDados($id){
         $dados['id'] = $linha['id'];
         $dados['lado'] = $linha['lado'];
         $dados['cor'] = $linha['cor'];
+        $dados['quad_idTabuleiro'] = $linha['quad_idTabuleiro'];
     }
     return $dados;
 }

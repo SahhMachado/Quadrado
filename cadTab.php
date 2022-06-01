@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <?php
-    $title = "Quadrado";
+    $title = "Tabuleiro";
     $lado = isset($_POST['lado']) ? $_POST['lado'] : 0;
     $cor = isset($_POST['cor']) ? $_POST['cor'] : "";
-    $quad_idTabuleiro = isset($_POST['quad_idTabuleiro']) ? $_POST['quad_idTabuleiro'] : 0;
 
-    include_once "acao.php";
+    include_once "acaoT.php";
     $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     $dados;
     if ($acao == 'editar'){
-        $id = isset($_GET['id']) ? $_GET['id'] : "";
-    if ($id > 0)
-        $dados = buscarDados($id);
+        $idTabuleiro = isset($_GET['idTabuleiro']) ? $_GET['idTabuleiro'] : "";
+    if ($idTabuleiro > 0)
+        $dados = buscarDados($idTabuleiro);
 }
 ?>
 
@@ -54,27 +53,16 @@
 
 <body>
     <br>
-        <h3>Insira os dados do Quadrado</h3><hr>
-            <form method="post" action="acao.php">
+        <h3>Insira os dados do Tabuleiro</h3><hr>
+            <form method="post" action="acaoT.php">
 
-            <input readonly type="hidden" name="id" id="id" value="<?php if ($acao == "editar") echo $dados['id']; 
+            <input readonly type="hidden" name="idTabuleiro" id="idTabuleiro" value="<?php if ($acao == "editar") echo $dados['idTabuleiro']; 
             else echo 0; ?>">
                 
             <p>Lado:</p>
                 <input require="true" type="text" name="lado" id="lado" placeholder="Digite o tamanho do lado" 
                 value="<?php if ($acao == "editar") echo $dados['lado'];?>"><br>
 
-            <p>Cor:</p>
-                <input required="true" name="cor" id="cor" type="color" required="true" placeholder="Digite a cor" 
-                value="<?php if ($acao == "editar") echo $dados['cor'];?>" ><br>    
-            
-            <p>Tabuleiro: </p>
-            <select name="quad_idTabuleiro"  id="quad_idTabuleiro">
-                <?php
-                require_once "utils.php";
-                echo lista_tabuleiro(0);
-                ?>
-            </select>
             <br>
             <hr>
             <br>

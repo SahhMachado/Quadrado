@@ -15,13 +15,42 @@ CREATE SCHEMA IF NOT EXISTS `quad` DEFAULT CHARACTER SET utf8 ;
 USE `quad` ;
 
 -- -----------------------------------------------------
--- Table `quad`.`quad`
+-- Table `quad`.`tabuleiro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quad`.`tabuleiro` (
+  `idTabuleiro` INT NOT NULL AUTO_INCREMENT,
+  `lado` INT NULL,
+  PRIMARY KEY (`idTabuleiro`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `quad`.`quadrado`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `quad`.`quadrado` (
-  `id` INT NOT NULL,
-  `lado` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `lado` INT NULL,
   `cor` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
+  `quad_idTabuleiro` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_quadrado_tabuleiro_idx` (`quad_idTabuleiro` ASC),
+  CONSTRAINT `fk_quadrado_tabuleiro`
+    FOREIGN KEY (`quad_idTabuleiro`)
+    REFERENCES `quad`.`tabuleiro` (`idTabuleiro`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `quad`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `quad`.`usuario` (
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(250) NULL,
+  `user` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(250) NOT NULL,
+  PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
 

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <?php
-    $title = "Quadrado";
+    $title = "Usuário";
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
-    require_once "classes/Quadrado.class.php";
-    $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
+    require_once "classes/Usuario.class.php";
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $cnst = isset($_POST['cnst']) ? $_POST['cnst'] : 1;
 ?>
@@ -40,12 +39,6 @@
             font-weight: bold;
         }
 
-        input{
-            background-color: #b4a0cd;
-            border-radius: 10px;
-            border: none;
-        }
-
         .container{
             margin: 20px;
         }
@@ -53,6 +46,12 @@
         .tab{
             border: none;
             background-color: #b4a0cd;
+        }
+
+        input{
+            background-color: #b4a0cd;
+            border-radius: 10px;
+            border: none;
         }
 
         td{
@@ -77,8 +76,8 @@
     </header>
 <div>
     <div class="container">
-        <form method="post">
-        <h3>Procurar Quadrado:</h3><br>
+    <form method="post">
+        <h3>Procurar Usuário:</h3><br>
         <input type="text" name="procurar" id="procurar" size="25" placeholder="pesquisar"
         value="<?php echo $procurar;?>"><br><br>
     <button name="acao" id="acao" type="submit">Procurar</button>
@@ -86,24 +85,24 @@
     <fieldset>
     <p> Ordernar e pesquisar por:</p><br>
         <form method="post" action="">
-            <input type="radio" name="cnst" value="1" <?php if ($cnst == "1") echo "checked" ?>> Lado<br>
-            <input type="radio" name="cnst" value="2" <?php if ($cnst == "2") echo "checked" ?>> Cor<br>
-            <input type="radio" name="cnst" value="3" <?php if ($cnst == "3") echo "checked" ?>> ID Tabuleiro<br>
+            <input type="radio" name="cnst" value="1" <?php if ($cnst == "1") echo "checked" ?>> ID<br>
+            <input type="radio" name="cnst" value="2" <?php if ($cnst == "2") echo "checked" ?>> Nome<br>
+            <input type="radio" name="cnst" value="3" <?php if ($cnst == "2") echo "checked" ?>> Login<br>
     <br><br>
     </form>
-<table class="tab">
-            <tr>
-                <td><b>Lado(cm)</b></td>
-                <td><b>Cor</b></td>
-                <td><b>ID Tabuleiro</b></td>
-                <td><b>Listar</b></td>
-                <td><b>Editar</b></td>
-                <td><b>Excluir</b></td>
+    <table class="tab">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Nome</b></td>
+            <td><b>Login</b></td>
+            <td><b>Senha</b></td>
+            <td><b>Editar</b></td>
+            <td><b>Excluir</b></td>
     </tr> 
     <tr>
     <?php
-    $quad = new Quadrado("","", "", "");
-        $lista = $quad->listar($cnst, $procurar);
+    $user= new Usuario("","","","");
+        $lista = $user->listar($cnst, $procurar);
         foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 
@@ -119,17 +118,14 @@
     //                              ORDER BY id");}
                         
     // while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) { 
-
-        $cor = str_replace("#","%23",$linha['cor']);
         ?>
-
-            <td><?php echo $linha['lado'];?></td>
-            <td><?php echo $linha['cor'];?></td>
-            <td><?php echo $linha['quad_idTabuleiro'];?></td>   
+            <td><?php echo $linha['idUsuario'];?></td>
+            <td><?php echo $linha['nome'];?></td>
+            <td><?php echo $linha['user'];?></td>
+            <td><?php echo $linha['senha'];?></td>
             
-            <td><a href='listar.php?lado=<?php echo $linha['lado'];?>&cor=<?php echo $cor;?>'><img src='img/listar.svg'></a></td>
-            <td><a href='cad.php?acao=editar&id=<?php echo $linha['id'];?>'><img src='img/edit.svg'></a></td>
-            <td><?php echo " <a href=javascript:excluirRegistro('acao.php?acao=excluir&id={$linha['id']}')>
+            <td><a href='cadUs.php?acao=editar&idUsuario=<?php echo $linha['idUsuario'];?>'><img src='img/edit.svg'></a></td>
+            <td><?php echo " <a href=javascript:excluirRegistro('acaoU.php?acao=excluir&idUsuario={$linha['idUsuario']}')>
             <img src='img/excluir.svg'></a><br>"; ?></td>
         </tr>   
         <?php } ?>    

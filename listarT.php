@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php
-    $title = "Quadrado";
+    $title = "Tabuleiro";
     $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
-    $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
-    $quad_idTabuleiro = isset($_GET['quad_idTabuleiro']) ? $_GET['quad_idTabuleiro'] : "";
 ?>
 
 <html lang="pt-br">
@@ -32,12 +30,6 @@
             font-weight: bold;
         }
 
-        .square{
-            height: <?php echo $lado?>vw;
-            width: <?php echo $lado?>vw;
-            background-color: <?php echo $cor?>;
-        }
-
         input{
             background-color: #b4a0cd;
             border-radius: 10px;
@@ -64,9 +56,9 @@
     <fieldset>
         <?php  
             if ($acao = "salvar") {
-                include_once "classes/Quadrado.class.php";
-                $quad = new Quadrado("", $lado, $cor, $quad_idTabuleiro);
-                echo $quad->desenha();
+                include_once "classes/Tabuleiro.class.php";
+                $tab = new Tabuleiro("", $lado);
+                echo $tab->desenha();
             }
             ?>
             <!-- <div class = "square"></div> -->
