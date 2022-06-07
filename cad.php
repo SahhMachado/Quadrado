@@ -72,7 +72,7 @@
             <select name="quad_idTabuleiro"  id="quad_idTabuleiro">
                 <?php
                 require_once "utils.php";
-                echo lista_tabuleiro(0);
+                echo lista_tabuleiro(0, $dados['quad_idTabuleiro']);
                 ?>
             </select>
             <br>
