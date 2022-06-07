@@ -13,7 +13,6 @@
     <style>
         body{
             background-color: #e5ddee;
-            margin: 20px;
             font-family: Arial, Helvetica, sans-serif;
         }
 
@@ -24,16 +23,19 @@
             font-weight: bold;
         }
 
-        header{
-            background-image: url("img/header1.jpg");
-            padding: 20px;
-            font-weight: bold;
-        }
-
         input{
             background-color: #b4a0cd;
             border-radius: 10px;
             border: none;
+        }
+
+        .seta{
+            width: 30px;
+        }
+
+        .div{
+            margin-top: 200px;
+            background-color:  #b4a0cd;
         }
 
         a{
@@ -47,21 +49,24 @@
     </style>
 </head>
 <body>
-    <header>
-        <?php
-        include_once "menu.php";
-        ?>
-    </header>
-    <br>
-    <fieldset>
+    <div class="div">
+        <center>
+            <br><br><br>
         <?php  
             if ($acao = "salvar") {
                 include_once "classes/Tabuleiro.class.php";
                 $tab = new Tabuleiro("", $lado);
                 echo $tab->desenha();
+                echo $tab;
             }
             ?>
+            <br>
+            <br>
+            <a href="show.php"><img src="img/arrow.svg" alt="" class="seta"></a>
+            <br><br><br>
+            </center>
             <!-- <div class = "square"></div> -->
+            </div>
     </fieldset>
     <br>
 </body>

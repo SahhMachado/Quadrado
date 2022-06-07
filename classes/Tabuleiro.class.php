@@ -86,12 +86,12 @@
         }
 
         public function desenha(){
-            $x = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color: #b4a0cd;'></div>";
+            $x = "<div style='height: ".$this->getLado()."vw; width: ".$this->getLado()."vw; background-color: #e5ddee;'></div>";
             return $x;
         }
 
         public function __toString(){
-            return "[Tabuleiro]<br>Lado: ".$this->getLado().
+            return "<br>[Tabuleiro]<br>Lado: ".$this->getLado().
             "<br>Área: ".$this->area().
             "<br>Perímetro: ".$this->perimetro();
         }

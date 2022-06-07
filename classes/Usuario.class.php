@@ -66,6 +66,7 @@
                     case(1): $sql .= " WHERE idUsuario like :procurar;"; $procurar .="%"; break;
                     case(2): $sql .= " WHERE nome like :procurar"; $procurar .="%"; break;
                     case(3): $sql .= " WHERE user like :procurar"; $procurar .="%"; break;
+                    case(3): $sql .= " WHERE user like :procurar"; $procurar .="%"; break;
                 }
             $stmt = $pdo->prepare($sql);
             if ($cnst > 0)
@@ -74,6 +75,19 @@
             return $stmt->fetchAll();
         }
 
+        public function efetuaLogin($us, $sn){
+            $pdo = Conexao::getInstance();
+            $sql = "SELECT nome FROM usuario WHERE user = '$us' AND senha = '$sn';";
+            $resultado = $pdo->query($sql)->fetchAll();
+            if($resultado){
+                $_SESSION['nome'] = $resultado[0]['nome'];
+                return true;
+            } else {
+                $_SESSION['nome'] = null;
+                return false;
+            }
+        
+        }
 
         public function __toString(){
             return "[Usuário]<br>Nome: ".$this->getNome().

@@ -19,13 +19,6 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        button{
-            background-color: #9178af;
-            border-radius: 10px;
-            border: none;
-            font-weight: bold;
-        }
-
         header{
             background-image: url("img/header1.jpg");
             padding: 20px;
@@ -44,9 +37,18 @@
             border: none;
         }
 
+        .div{
+            margin-top: 100px;
+            background-color:  #b4a0cd;
+        }
+
         a{
             text-decoration: none;
             color: black;
+        }
+
+        .seta{
+            width: 30px;
         }
 
         a:hover{
@@ -55,20 +57,24 @@
     </style>
 </head>
 <body>
-    <header>
-        <?php
-        include_once "menu.php";
-        ?>
-    </header>
     <br>
-    <fieldset>
+    <div class="div">
+        <center>
+        <br><br><br>
         <?php  
             if ($acao = "salvar") {
                 include_once "classes/Quadrado.class.php";
                 $quad = new Quadrado("", $lado, $cor, $quad_idTabuleiro);
                 echo $quad->desenha();
+                echo $quad;
             }
             ?>
+            <br>
+            <br>
+            <a href="show.php"><img src="img/arrow.svg" alt="" class="seta"></a>
+            <br><br><br>
+        </center>
+    </div>
             <!-- <div class = "square"></div> -->
     </fieldset>
     <br>

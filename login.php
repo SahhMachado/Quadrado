@@ -1,18 +1,15 @@
+<?php
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <?php
-    $title = "Usuário";
-    $nome = isset($_POST['nome']) ? $_POST['nome'] : 0;
+    $title = "Login";
+    $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     $user = isset($_POST['user']) ? $_POST['user'] : "";
     $senha = isset($_POST['senha']) ? $_POST['senha'] : 0;
-
-    include_once "acaoU.php";
-    $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
-    $dados;
-    if ($acao == 'editar'){
-        $idUsuario = isset($_GET['idUsuario']) ? $_GET['idUsuario'] : "";
-    if ($idUsuario > 0)
-        $dados = buscarDados($idUsuario);
-}
+    require_once "conf/Conexao.php";
 ?>
 
 <html lang="pt-br">
@@ -35,6 +32,12 @@
             font-weight: bold;
         }
 
+        header{
+            background-image: url("img/header1.jpg");
+            padding: 20px;
+            font-weight: bold;
+        }
+
         input{
             background-color: #b4a0cd;
             border-radius: 10px;
@@ -53,29 +56,36 @@
 </head>
 
 <body>
-    <br>
+    <header>
+    <?php
+    include_once "menu.php";
+    ?>
+    </header>
         <h3>Insira seus dados</h3><hr>
-            <form method="post" action="acaoU.php">
-
-            <input readonly type="hidden" name="idUsuario" idUsuario="idUsuario" value="<?php if ($acao == "editar") echo $dados['idUsuario']; 
-            else echo 0; ?>">
+            <form method="post" action="login.php?acao=login">
                 
-            <p>Nome:</p>
-                <input require="true" type="text" name="nome" idUsuario="nome" placeholder="Insira seu nome" 
-                value="<?php if ($acao == "editar") echo $dados['nome'];?>"><br>
-
             <p>Login:</p>
-                <input required="true" name="user" id="user" type="text" required="true" placeholder="Digite o login" 
-                value="<?php if ($acao == "editar") echo $dados['user'];?>" ><br>    
+                <input required="true" name="user" id="user" type="text" required="true" placeholder="Digite o login"
+                value="<?php echo $user ?>"><br>    
             
             <p>Senha:</p>
-                <input required="true" name="senha" id="senha" type="password" required="true" placeholder="Digite a senha" 
-                value="<?php if ($acao == "editar") echo $dados['senha'];?>" ><br>    
+                <input required="true" name="senha" id="senha" type="text" required="true" placeholder="Digite a senha" 
+                value="<?php echo $senha ?>"><br>    
             <br>
-            <hr>
             <br>
                 <button name="acao" value="salvar" id="acao" type="submit">Salvar</button>
             </form>
             <br> 
+            <?php
+            if($acao == 'login'){
+                require_once "classes/Usuario.class.php";
+                $usuario = new Usuario("","","","");
+                if ($usuario->efetuaLogin($user, $senha) == true){
+                    echo "Login efetuado!";
+                }else {
+                echo "Erro";
+            }
+        }
+            ?>
 </body>
 </html>

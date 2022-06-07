@@ -92,9 +92,8 @@
         }
 
         public function __toString(){
-            return "[Quadrado]<br>Lado: ".$this->getLado().
+            return "<br>[Quadrado]<br>Lado: ".$this->getLado().
             "<br>Cor: ".$this->getCor().
-            "<br>ID Tabuleiro: ".$this->getIdT().
             "<br>Área: ".$this->area().
             "<br>Perímetro: ".$this->perimetro().
             "<br>Diagonal: ".$this->diagonal();
