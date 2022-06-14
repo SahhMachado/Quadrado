@@ -102,8 +102,8 @@
     </tr> 
     <tr>
     <?php
-    $quad = new Quadrado("","", "", "");
-        $lista = $quad->listar($cnst, $procurar);
+        $lista = Quadrado::listar($cnst, $procurar);
+        $quad = new Quadrado("","", "", "");
         foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 

@@ -7,6 +7,7 @@
     <td><a href="show.php" class="menu">Consultar Quadrado</a></td>
     <td><a href="showT.php" class="menu">Consultar Tabuleiro</a></td>
     <td><a href="showUs.php" class="menu">Consultar Usuário</a></td>
+
 </tr>
 </table>
 <br><br>
@@ -14,12 +15,13 @@
     .menu{
         text-decoration: none;
         padding: 10px;
-        font-size: 25px;
-        font-family: "nature";
+        font-size: 20px;
+        /* font-family: "nature"; */
+        font-weight: bold;
     }
 
     @font-face {
         font-family: "nature";
-        src: url(font/little/LittleBird.ttf);
+        src: url(font/flower3.ttf);
     }
 </style>

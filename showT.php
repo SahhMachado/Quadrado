@@ -100,9 +100,9 @@
     </tr> 
     <tr>
     <?php
-    $tab = new Tabuleiro("","");
-        $lista = $tab->listar($cnst, $procurar);
-        foreach ($lista as $linha) {
+    $lista = Tabuleiro::listar($cnst, $procurar);
+    $tab = new Tabuleiro("","", "", "");
+    foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 
 

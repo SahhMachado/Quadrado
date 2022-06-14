@@ -7,8 +7,7 @@ $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     if ($acao == "excluir"){
         $idTabuleiro = isset($_GET['idTabuleiro']) ? $_GET['idTabuleiro'] : 0;
         
-        $tab = new Tabuleiro("","");
-        $resultado = $tab->excluir($idTabuleiro);
+        $tab = Tabuleiro::excluir($idTabuleiro);
         header("location:showT.php");
     }
 
@@ -18,12 +17,10 @@ $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
 
         try{
         if ($idTabuleiro == 0){
-            $tab = new Tabuleiro("", $_POST['lado']);      
-            $resultado = $tab->insere();
+            $tab = Tabuleiro::insere($_POST['lado']);  
             header("location:showT.php");
         }else {
-            $tab = new Tabuleiro($_POST['idTabuleiro'], $_POST['lado']);
-            $resultado = $tab->editar();
+            $tab = Tabuleiro::editar($_POST['idTabuleiro'], $_POST['lado']);
         }    
         header("location:showT.php");    
     }catch(Exception $e){

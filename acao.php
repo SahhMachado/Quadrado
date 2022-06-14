@@ -7,8 +7,7 @@ $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     if ($acao == "excluir"){
         $id = isset($_GET['id']) ? $_GET['id'] : 0;
         
-        $quad = new Quadrado("", "", "", "");
-        $resultado = $quad->excluir($id);
+        $quad = Quadrado::excluir($id);
         header("location:show.php");
     }
 
@@ -18,12 +17,10 @@ $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
 
         try{
         if ($id == 0){
-            $quad = new Quadrado("", $_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);      
-            $resultado = $quad->insere();
+            $quad = Quadrado::insere($_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);     
             header("location:show.php");
         }else {
-            $quad = new Quadrado($_POST['id'], $_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);
-            $resultado = $quad->editar();
+            $quad = Quadrado::editar($_POST['id'], $_POST['lado'], $_POST['cor'], $_POST['quad_idTabuleiro']);
         }    
         header("location:show.php");    
     }catch(Exception $e){

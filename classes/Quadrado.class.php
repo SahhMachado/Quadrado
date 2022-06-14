@@ -37,32 +37,32 @@
             return $this->lado * 1.4;
         }
 
-        public function insere(){
+        public static function insere($lado, $cor, $quad_idTabuleiro){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, quad_idTabuleiro) 
             VALUES(:lado, :cor, :quad_idTabuleiro)');
 
-            $stmt->bindValue(':lado', $this->getLado());
-            $stmt->bindValue(':cor', $this->getCor());
-            $stmt->bindValue(':quad_idTabuleiro', $this->getIdT());
+            $stmt->bindValue(':lado', $lado);
+            $stmt->bindValue(':cor', $cor);
+            $stmt->bindValue(':quad_idTabuleiro', $quad_idTabuleiro);
 
             return $stmt->execute(); 
         }
 
-        public function editar(){
+        public static function editar($id, $lado, $cor, $quad_idTabuleiro){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('UPDATE quadrado SET lado = :lado, cor = :cor, quad_idTabuleiro = :quad_idTabuleiro
             WHERE id = :id');
 
-            $stmt->bindValue(':id', $this->getId());
-            $stmt->bindValue(':lado', $this->getLado());
-            $stmt->bindValue(':cor', $this->getCor());
-            $stmt->bindValue(':quad_idTabuleiro', $this->getIdT());
+            $stmt->bindValue(':id', $id);
+            $stmt->bindValue(':lado', $lado);
+            $stmt->bindValue(':cor', $cor);
+            $stmt->bindValue(':quad_idTabuleiro', $quad_idTabuleiro);
 
             return $stmt->execute();
         }
 
-        function excluir($id){
+        public static function excluir($id){
             $pdo = Conexao::getInstance();
             $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
             $stmt->bindValue(':id', $id);
@@ -70,7 +70,7 @@
             return $stmt->execute();
         }
 
-        public function listar($cnst = 0, $procurar = ""){
+        public static function listar($cnst = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM quadrado";
             if ($cnst > 0)

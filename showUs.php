@@ -101,9 +101,9 @@
     </tr> 
     <tr>
     <?php
-    $user= new Usuario("","","","");
-        $lista = $user->listar($cnst, $procurar);
-        foreach ($lista as $linha) {
+    $lista = Usuario::listar($cnst, $procurar);
+    $user = new Usuario("","", "", "");
+    foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 
 

@@ -24,28 +24,28 @@
             return $this->lado * 4;
         }
 
-        public function insere(){
+        public static function insere($lado){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO tabuleiro (lado) 
             VALUES(:lado)');
 
-            $stmt->bindValue(':lado', $this->getLado());
+            $stmt->bindValue(':lado', $lado);
 
             return $stmt->execute(); 
         }
 
-        public function editar(){
+        public static function editar($idTabuleiro, $lado){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('UPDATE tabuleiro SET lado = :lado
             WHERE idTabuleiro = :idTabuleiro');
 
-            $stmt->bindValue(':idTabuleiro', $this->getId());
-            $stmt->bindValue(':lado', $this->getLado());
+            $stmt->bindValue(':idTabuleiro', $idTabuleiro);
+            $stmt->bindValue(':lado', $lado);
 
             return $stmt->execute();
         }
 
-        function excluir($idTabuleiro){
+        public  static function excluir($idTabuleiro){
             $pdo = Conexao::getInstance();
             $stmt = $pdo ->prepare('DELETE FROM tabuleiro WHERE idTabuleiro = :idTabuleiro');
             $stmt->bindValue(':idTabuleiro', $idTabuleiro);
@@ -53,7 +53,7 @@
             return $stmt->execute();
         }
 
-        public function listar($cnst = 0, $procurar = ""){
+        public static function listar($cnst = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM tabuleiro";
             if ($cnst > 0)

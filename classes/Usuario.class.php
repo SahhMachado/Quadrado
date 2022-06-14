@@ -25,32 +25,32 @@
         public function getSenha(){ return $this->senha; }
         public function setSenha($sn){ $this->senha = $sn;}
 
-        public function insere(){
+        public static function insere($nome, $user, $senha){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('INSERT INTO usuario (nome, user, senha) 
             VALUES(:nome, :user, :senha)');
 
-            $stmt->bindValue(':nome', $this->getNome());
-            $stmt->bindValue(':user', $this->getUser());
-            $stmt->bindValue(':senha', $this->getSenha());
+            $stmt->bindValue(':nome', $nome);
+            $stmt->bindValue(':user', $user);
+            $stmt->bindValue(':senha', $senha);
 
             return $stmt->execute(); 
         }
 
-        public function editar(){
+        public static function editar($idUsuario, $nome, $user, $senha){
             $pdo = Conexao::getInstance();
             $stmt = $pdo->prepare('UPDATE usuario SET nome = :nome, user = :user, senha = :senha
             WHERE idUsuario = :idUsuario');
 
-            $stmt->bindValue(':idUsuario', $this->getId());
-            $stmt->bindValue(':nome', $this->getNome());
-            $stmt->bindValue(':user', $this->getUser());
-            $stmt->bindValue(':senha', $this->getSenha());
+            $stmt->bindValue(':idUsuario', $idUsuario);
+            $stmt->bindValue(':nome', $nome);
+            $stmt->bindValue(':user', $user);
+            $stmt->bindValue(':senha', $senha);
 
             return $stmt->execute();
         }
 
-        function excluir($idUsuario){
+        public static function excluir($idUsuario){
             $pdo = Conexao::getInstance();
             $stmt = $pdo ->prepare('DELETE FROM usuario WHERE idUsuario = :idUsuario');
             $stmt->bindValue(':idUsuario', $idUsuario);
@@ -58,7 +58,7 @@
             return $stmt->execute();
         }
 
-        public function listar($cnst = 0, $procurar = ""){
+        public static function listar($cnst = 0, $procurar = ""){
             $pdo = Conexao::getInstance();
             $sql = "SELECT * FROM usuario";
             if ($cnst > 0)

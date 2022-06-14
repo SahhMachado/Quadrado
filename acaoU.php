@@ -7,8 +7,7 @@ $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
     if ($acao == "excluir"){
         $idUsuario = isset($_GET['idUsuario']) ? $_GET['idUsuario'] : 0;
         
-        $user = new Usuario("", "", "", "");
-        $resultado = $user->excluir($idUsuario);
+        $user = Usuario::excluir($idUsuario);
         header("location:showUs.php");
     }
 
@@ -18,12 +17,10 @@ $acao = isset($_POST['acao']) ? $_POST['acao'] : "";
 
         try{
         if ($idUsuario == 0){
-            $user = new Usuario("", $_POST['nome'], $_POST['user'], $_POST['senha']);      
-            $resultado = $user->insere();
+            $user = Usuario::insere($_POST['nome'], $_POST['user'], $_POST['senha']);      
             header("location:showUs.php");
         }else {
-            $user = new Usuario($_POST['idUsuario'], $_POST['nome'], $_POST['user'], $_POST['senha']);
-            $resultado = $user->editar();
+            $user = Usuario::editar($_POST['idUsuario'], $_POST['nome'], $_POST['user'], $_POST['senha']);
         }    
         header("location:showUs.php");    
     }catch(Exception $e){
