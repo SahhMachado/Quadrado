@@ -75,7 +75,7 @@
             return $stmt->fetchAll();
         }
 
-        public function efetuaLogin($us, $sn){
+        public static function efetuaLogin($us, $sn){
             $pdo = Conexao::getInstance();
             $sql = "SELECT nome FROM usuario WHERE user = '$us' AND senha = '$sn';";
             $resultado = $pdo->query($sql)->fetchAll();

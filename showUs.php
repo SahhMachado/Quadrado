@@ -102,7 +102,6 @@
     <tr>
     <?php
     $lista = Usuario::listar($cnst, $procurar);
-    $user = new Usuario("","", "", "");
     foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 

@@ -103,25 +103,10 @@
     <tr>
     <?php
         $lista = Quadrado::listar($cnst, $procurar);
-        $quad = new Quadrado("","", "", "");
         foreach ($lista as $linha) {
-    
-    //$pdo = Conexao::getInstance(); 
-
-    // if($cnst == 1){
-    //     $consulta = $pdo->query("SELECT * FROM quadrado
-    //                              WHERE lado LIKE '$procurar%' 
-    //                              ORDER BY lado");}
-
-    // else if($cnst == 2){
-    //     $consulta = $pdo->query("SELECT * FROM quadrado
-    //                              WHERE cor LIKE '$procurar%' 
-    //                              ORDER BY id");}
-                        
-    // while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) { 
 
         $cor = str_replace("#","%23",$linha['cor']);
-        ?>
+    ?>
 
             <td><?php echo $linha['lado'];?></td>
             <td><?php echo $linha['cor'];?></td>

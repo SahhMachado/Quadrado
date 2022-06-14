@@ -79,8 +79,8 @@ session_start();
             <?php
             if($acao == 'login'){
                 require_once "classes/Usuario.class.php";
-                $usuario = new Usuario("","","","");
-                if ($usuario->efetuaLogin($user, $senha) == true){
+               
+                if (Usuario::efetuaLogin($user, $senha) == true){
                     echo "Login efetuado!";
                 }else {
                 echo "Erro";

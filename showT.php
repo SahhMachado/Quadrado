@@ -101,7 +101,6 @@
     <tr>
     <?php
     $lista = Tabuleiro::listar($cnst, $procurar);
-    $tab = new Tabuleiro("","", "", "");
     foreach ($lista as $linha) {
     
     //$pdo = Conexao::getInstance(); 
